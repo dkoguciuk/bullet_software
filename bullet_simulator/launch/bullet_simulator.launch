@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<launch>
+
+
+  <!--===================== SIMULATION WORLD ==========================-->
+  <include file="$(find bullet_simulator)/launch/world.launch"/>
+  <include file="$(find bullet_simulator)/launch/spawn.launch"/>
+  <include file="$(find bullet_simulator)/launch/control.launch"/>
+
+</launch>

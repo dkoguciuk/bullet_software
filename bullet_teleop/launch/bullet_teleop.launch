@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+
+  <!-- Prepare robot descrition on parameter server -->
+  <rosparam file="$(find bullet_teleop)/config/bullet_teleop.yaml" command="load"/>
+  <!--<param  name="robot_description"
+          command="cat $(find bullet_description)/urdf/bullet.urdf" /> -->
+
+  <!--======================== ROBOT NAMEPSACE ==========================-->
+  <group ns="$(arg robot_name)">
+  
+  <node name="joy_node" pkg="joy" type="joy_node" />
+  <node name="bullet_teleop" pkg="bullet_teleop" type="bullet_teleop.py" />
+
+  </group>
+
+</launch>

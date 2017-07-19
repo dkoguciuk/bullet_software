@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+
+  <!--======== LOAD THE ROBOT URDF INTO THE ROS PARAMETER SERVER =======-->
+  <rosparam command="delete" param="$(arg robot_name)/robot_description"/>
+  <param  name="$(arg robot_name)/robot_description" command="cat $(find bullet_description)/urdf/bullet.urdf"/>
+
+
+</launch>

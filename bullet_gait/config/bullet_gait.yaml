@@ -1,0 +1,8 @@
+bullet:
+  gait:
+    body_heigth: 0.09
+    leg_tip_pos_r: 0.16
+    step_heigth: 0.03
+    step_period: 1
+    generation:
+      tp: 0.01

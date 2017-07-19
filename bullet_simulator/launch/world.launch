@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+  <arg name="module"			default="simulator"/>
+  <arg name="position_controller" 	default="false"/>
+  <arg name="paused" 			default="true"/>
+
+  <!--======= LOAD THE ROBOT URDF INTO THE ROS PARAMETER SERVER =======-->
+  <include file="$(find bullet_description)/launch/load_description.launch">
+    <arg name="robot_name"	value="$(arg robot_name)"/>
+  </include>
+
+  <!--======================== ROBOT NAMEPSACE ==========================-->
+  <group ns="$(arg robot_name)">
+
+    <!--===================== MODULE NAMEPSACE ==========================-->
+    <group ns="$(arg module)">
+
+      <!--===================== SIMULATION WORLD ==========================-->
+      <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" 	value="$(find bullet_simulator)/worlds/bullet.world"	/>
+        <arg name="paused" 	value="$(arg paused)"			 		/>
+      </include>
+
+      <!--================= SPAWN A ROBOT INTO GAZEBO =====================-->
+
+
+    </group>  
+
+  </group>
+
+</launch>

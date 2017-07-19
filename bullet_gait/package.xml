@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <name>bullet_gait</name>
+  <version>0.0.0</version>
+  <description>The bullet_gait package</description>
+
+  <author email="szlendak.jakub@gmail.com">Jakub Szlendak</author>
+  <author email="daniel.koguciuk@gmail.com">Daniel Koguciuk</author>
+  <maintainer email="daniel.koguciuk@gmail.com">Daniel Koguciuk</maintainer>
+
+  <license>BSD</license>
+  <url type="website">http://wutrobotics.mchtr.pw.edu.pl</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>bullet_kinematics</build_depend>
+  <build_depend>bullet_core</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>bullet_core</run_depend>
+  <run_depend>bullet_kinematics</run_depend>
+  <run_depend>message_runtime</run_depend>
+
+  <export>
+  </export>
+
+</package>

@@ -1,0 +1,7 @@
+# Service to solve forward kinematics for given leg
+# Returns result in body frame and in hip frame
+std_msgs/Float64[3] joints
+int16 leg_index
+---
+geometry_msgs/Point result
+geometry_msgs/Point result_hip

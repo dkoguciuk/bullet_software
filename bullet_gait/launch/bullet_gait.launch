@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"			default="bullet"/>
+
+  <!--========= Prepare gait descrition on parameter server ==========-->
+  <rosparam file="$(find bullet_gait)/config/bullet_gait.yaml" command="load"/>
+
+  <!--======================== ROBOT NAMEPSACE =========================-->
+  <group ns="$(arg robot_name)">
+
+    <node pkg="bullet_gait" type="gait_generator" name="gait_generator" output="screen" />
+
+  </group>
+
+</launch>

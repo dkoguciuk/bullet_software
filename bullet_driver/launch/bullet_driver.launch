@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+
+  <!--======================== ROBOT NAMEPSACE ==========================-->
+  <group ns="$(arg robot_name)">
+
+    <!--===================== ROBOT DRIVER NODE =========================-->
+    <node pkg="bullet_driver" type="bullet_driver" name="bullet_driver" output="screen"/>
+
+  </group>
+
+</launch>

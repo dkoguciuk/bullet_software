@@ -1,0 +1,85 @@
+bullet:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 10
+
+    # Position Controllers ---------------------------------------
+    # LEG1
+    leg_1_1_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_1_forearm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_1_2_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_1_arm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_1_3_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_1_foot_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    # LEG2
+    leg_2_1_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_2_forearm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_2_2_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_2_arm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_2_3_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_2_foot_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    # LEG3
+    leg_3_1_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_3_forearm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_3_2_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_3_arm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_3_3_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_3_foot_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    # LEG4
+    leg_4_1_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_4_forearm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_4_2_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_4_arm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_4_3_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_4_foot_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    # LEG5
+    leg_5_1_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_5_forearm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_5_2_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_5_arm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_5_3_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_5_foot_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    # LEG6
+    leg_6_1_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_6_forearm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_6_2_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_6_arm_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}
+    leg_6_3_ctrl:
+      type: effort_controllers/JointPositionController
+      joint: leg_6_foot_joint
+      pid: {p: 0.5, i: 0.05, d: 0.056}

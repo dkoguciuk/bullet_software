@@ -1,0 +1,16 @@
+bullet:
+  teleop:
+    joy:
+      dead_man_switch_id: 4
+      standup_button_id: 0
+      lay_down_button_id: 1
+      linear_velocity_x_axe_id: 1
+      linear_velocity_y_axe_id: 0
+      angular_velocity_axe_id: 3
+      mode_change_button_id: 2
+      body_pos_x_axe_id: 1
+      body_pos_y_axe_id: 0
+      body_orientation_x_axe_id: 4
+      body_orientation_y_axe_id: 3
+      body_orientation_max_angle: 0.15
+      body_pos_max: 0.03

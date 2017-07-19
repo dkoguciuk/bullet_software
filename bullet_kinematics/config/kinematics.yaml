@@ -1,0 +1,7 @@
+bullet:
+  kinematics_description:
+    leg_segment_lenghts: [0.0675, 0.0750, 0.1245]
+    leg_x_pos_in_root_frame: [0.11395, 0, -0.11395, -0.11395, 0, 0.11395]
+    leg_y_pos_in_root_frame: [-0.08264,-0.11896, -0.08264, 0.082754, 0.11896, 0.082754]
+    leg_angle_in_root_frame: [deg(-45), deg(-90), deg(-135), deg(135), deg(90), deg(45)]
+    kinematics_mode: "global"

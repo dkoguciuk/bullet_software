@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+
+  <!--======== Prepare robot descrition on parameter server ==========-->
+  <rosparam file="$(find bullet_kinematics)/config/kinematics.yaml" command="load"/>
+
+  <!--======================== ROBOT NAMEPSACE =========================-->
+  <group ns="$(arg robot_name)">
+
+  <param name="robot_name"		value="$(arg robot_name)"/>
+    <!--<param  name="robot_description" command="cat $(find bullet_description)/urdf/bullet.urdf" /> -->
+    <node pkg="bullet_kinematics" type="kinematics_solver" name="kinematics_solver" output="screen"/>
+
+  </group>
+
+</launch>

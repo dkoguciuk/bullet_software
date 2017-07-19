@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+  <arg name="module"			default="simulator"/>
+
+      <!--================= SPAWN A ROBOT INTO GAZEBO =====================-->
+      <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+            args="-urdf -param $(arg robot_name)/robot_description
+                  -gazebo_namespace /$(arg robot_name)/$(arg module)/gazebo
+                  -robot_namespace /$(arg robot_name)/$(arg module)/
+                  -model $(arg robot_name)
+                  -z 0.01 "/>
+
+</launch>

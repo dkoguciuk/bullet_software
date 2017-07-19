@@ -1,0 +1,2431 @@
+<?xml version="1.0" ?>
+<robot
+  name="bullet">
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/bullet</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-5.9635796939439E-05 3.74625273918532E-05 0.0220737857529309"
+        rpy="0 0 0" />
+      <mass
+        value="0.26667112057784" />
+      <inertia
+        ixx="0.000748339276654686"
+        ixy="8.68074449070377E-08"
+        ixz="-1.81712739650435E-07"
+        iyy="0.000981744929643055"
+        iyz="1.14149870318711E-07"
+        izz="0.00158602359934563" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.666666666666667 0.694117647058824 0.764705882352941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.015"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.25 0.2 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link
+    name="plug_link">
+    <inertial>
+      <origin
+        xyz="-0.0056089 0.0011051 0.016059"
+        rpy="0 0 0" />
+      <mass
+        value="0.11991" />
+      <inertia
+        ixx="0.00028126"
+        ixy="-9.098E-06"
+        ixz="4.5305E-07"
+        iyy="0.00058035"
+        iyz="-5.2933E-09"
+        izz="0.00084063" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/plug_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+   <!-- <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/plug_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="plug_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="8.79440476813292E-33 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="plug_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="servo_link">
+    <inertial>
+      <origin
+        xyz="-8.8541E-05 5.5621E-05 0.016229"
+        rpy="0 0 0" />
+      <mass
+        value="0.25106" />
+      <inertia
+        ixx="0.0019045"
+        ixy="-1.2566E-07"
+        ixz="-9.6563E-20"
+        iyy="0.0018893"
+        iyz="-2.2515E-19"
+        izz="0.0037433" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+  <!--  <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/servo_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="8.79440476813292E-33 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="sensors_link">
+    <inertial>
+      <origin
+        xyz="0.006324 -0.0066315 0.01585"
+        rpy="0 0 0" />
+      <mass
+        value="0.014514" />
+      <inertia
+        ixx="2.5098E-06"
+        ixy="7.4366E-06"
+        ixz="-3.393E-07"
+        iyy="9.2124E-05"
+        iyz="-2.2603E-08"
+        izz="9.3173E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/sensors_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.3 0.3 0.3 1" />
+      </material>
+    </visual>
+  <!--  <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/sensors_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="sensors_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="8.79440476813292E-33 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="sensors_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="electronics_link">
+    <inertial>
+      <origin
+        xyz="0.0074569 0.0020461 0.011058"
+        rpy="0 0 0" />
+      <mass
+        value="0.040161" />
+      <inertia
+        ixx="2.9231E-05"
+        ixy="4.1419E-06"
+        ixz="2.2885E-06"
+        iyy="4.4184E-05"
+        iyz="3.6188E-07"
+        izz="7.04E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/electronics_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0.9 0.1 1" />
+      </material>
+    </visual>
+  <!--  <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/electronics_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="electronics_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="8.79440476813292E-33 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="electronics_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_1_forearm_link">
+    <inertial>
+      <origin
+        xyz="0.017276 1.0146E-06 0.0012814"
+        rpy="0 0 0" />
+      <mass
+        value="0.011999" />
+      <inertia
+        ixx="4.0634E-06"
+        ixy="4.659E-11"
+        ixz="-4.4795E-07"
+        iyy="4.7997E-06"
+        iyz="2.0807E-11"
+        izz="2.6852E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+  <!--  <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_forearm_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="leg_1_forearm_joint"
+    type="continuous">
+    <origin
+      xyz="0.113952162823079 -0.0826430598623217 0.016"
+      rpy="4.33217549907182E-16 3.4834412824402E-16 -0.785398163397447" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg_1_forearm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_1_forearm_servo_link">
+    <inertial>
+      <origin
+        xyz="0.054433 -0.00020847 -0.00073174"
+        rpy="0 0 0" />
+      <mass
+        value="0.041774" />
+      <inertia
+        ixx="6.5748E-06"
+        ixy="3.0387E-07"
+        ixz="-9.9107E-09"
+        iyy="1.0186E-05"
+        iyz="-4.4578E-09"
+        izz="1.1951E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_forearm_servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.05 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_1_forearm_servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="2.46519032881566E-32 4.93038065763132E-32 0" />
+    <parent
+      link="leg_1_forearm_link" />
+    <child
+      link="leg_1_forearm_servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_1_arm_link">
+    <inertial>
+      <origin
+        xyz="0.0375 7.4367E-10 -0.00020126"
+        rpy="0 0 0" />
+      <mass
+        value="0.034236" />
+      <inertia
+        ixx="1.7379E-05"
+        ixy="3.5358E-08"
+        ixz="-1.8477E-06"
+        iyy="4.4351E-05"
+        iyz="-7.3181E-16"
+        izz="3.0276E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.038 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.048"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_1_arm_joint"
+    type="continuous">
+    <origin
+      xyz="0.0675 0 -0.00076"
+      rpy="1.5708 -5.7268E-14 -2.387E-15" />
+    <parent
+      link="leg_1_forearm_link" />
+    <child
+      link="leg_1_arm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_1_foot_link">
+    <inertial>
+      <origin
+        xyz="0.013072 2.8454E-05 -0.00020951"
+        rpy="0 0 0" />
+      <mass
+        value="0.041484" />
+      <inertia
+        ixx="6.5186E-06"
+        ixy="9.9042E-09"
+        ixz="-3.0384E-07"
+        iyy="1.1799E-05"
+        iyz="-4.4564E-09"
+        izz="1.0031E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_foot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_1_foot_joint"
+    type="continuous">
+    <origin
+      xyz="0.075 0 -0.000460000000000273"
+      rpy="1.04658473403549E-16 4.32986979603811E-15 -4.69087896824192E-14" />
+    <parent
+      link="leg_1_arm_link" />
+    <child
+      link="leg_1_foot_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_1_absorber_link">
+    <inertial>
+      <origin
+        xyz="0.073062 -0.00037049 -6.9437E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.021547" />
+      <inertia
+        ixx="6.0227E-06"
+        ixy="1.2924E-07"
+        ixz="-1.4958E-14"
+        iyy="1.8916E-05"
+        iyz="6.0444E-11"
+        izz="1.5561E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_absorber_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.068 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.028 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_1_absorber_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_1_foot_link" />
+    <child
+      link="leg_1_absorber_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_1_antislipper_link">
+    <inertial>
+      <origin
+        xyz="0.12452 -2.4251E-15 3.3307E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0022964" />
+      <inertia
+        ixx="6.8197E-08"
+        ixy="-5.5437E-23"
+        ixz="-3.3087E-24"
+        iyy="7.2351E-08"
+        iyz="7.8257E-24"
+        izz="7.2351E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_1_antislipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.123 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+        <cylinder length="0.015" radius="0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_1_antislipper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_1_foot_link" />
+    <child
+      link="leg_1_antislipper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_2_forearm_link">
+    <inertial>
+      <origin
+        xyz="0.017171 1.3884E-06 0.0013578"
+        rpy="0 0 0" />
+      <mass
+        value="0.011927" />
+      <inertia
+        ixx="4.0451E-06"
+        ixy="1.2401E-10"
+        ixz="-4.3216E-07"
+        iyy="4.7665E-06"
+        iyz="-3.5458E-11"
+        izz="2.6567E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+  <!--  <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_forearm_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="leg_2_forearm_joint"
+    type="continuous">
+    <origin
+      xyz="-8.8541E-05 -0.11896 0.016"
+      rpy="5.2062E-16 2.91E-16 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg_2_forearm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_2_forearm_servo_link">
+    <inertial>
+      <origin
+        xyz="0.054455 -0.00023549 -0.00073179"
+        rpy="0 0 0" />
+      <mass
+        value="0.041843" />
+      <inertia
+        ixx="6.594E-06"
+        ixy="2.8912E-07"
+        ixz="-9.9361E-09"
+        iyy="1.0198E-05"
+        iyz="-4.4259E-09"
+        izz="1.1982E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_forearm_servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.05 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_2_forearm_servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 6.39231880465656E-33 0" />
+    <parent
+      link="leg_2_forearm_link" />
+    <child
+      link="leg_2_forearm_servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_2_arm_link">
+    <inertial>
+      <origin
+        xyz="0.0375 5.2255E-10 -0.00020126"
+        rpy="0 0 0" />
+      <mass
+        value="0.034236" />
+      <inertia
+        ixx="1.7379E-05"
+        ixy="3.5358E-08"
+        ixz="-1.8477E-06"
+        iyy="4.4351E-05"
+        iyz="-5.1421E-16"
+        izz="3.0276E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.038 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.048"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_2_arm_joint"
+    type="continuous">
+    <origin
+      xyz="0.0675000000000001 0 -0.000760000000000038"
+      rpy="1.5707963267949 -5.7261880114394E-14 -2.44249065417533E-15" />
+    <parent
+      link="leg_2_forearm_link" />
+    <child
+      link="leg_2_arm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_2_foot_link">
+    <inertial>
+      <origin
+        xyz="0.012997 2.8355E-05 -0.00020899"
+        rpy="0 0 0" />
+      <mass
+        value="0.041629" />
+      <inertia
+        ixx="6.5453E-06"
+        ixy="9.9928E-09"
+        ixz="-3.043E-07"
+        iyy="1.188E-05"
+        iyz="-4.4572E-09"
+        izz="1.0112E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_foot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_2_foot_joint"
+    type="continuous">
+    <origin
+      xyz="0.075 0 -0.000460000000000291"
+      rpy="-4.04901985956172E-16 4.49640324973188E-15 -4.68060191060397E-14" />
+    <parent
+      link="leg_2_arm_link" />
+    <child
+      link="leg_2_foot_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_2_absorber_link">
+    <inertial>
+      <origin
+        xyz="0.073032 -0.00037142 -7.0825E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.021493" />
+      <inertia
+        ixx="6.0216E-06"
+        ixy="1.29E-07"
+        ixz="-1.4999E-14"
+        iyy="1.8907E-05"
+        iyz="2.0114E-10"
+        izz="1.5553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_absorber_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.068 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.028 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_2_absorber_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -3.41510164748246E-31" />
+    <parent
+      link="leg_2_foot_link" />
+    <child
+      link="leg_2_absorber_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_2_antislipper_link">
+    <inertial>
+      <origin
+        xyz="0.12452 -2.4425E-15 3.9942E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0022964" />
+      <inertia
+        ixx="6.8197E-08"
+        ixy="-5.9055E-23"
+        ixz="6.6702E-24"
+        iyy="7.2351E-08"
+        iyz="-1.0508E-24"
+        izz="7.2351E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_2_antislipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.123 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+        <cylinder length="0.015" radius="0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_2_antislipper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -3.41510164748246E-31" />
+    <parent
+      link="leg_2_foot_link" />
+    <child
+      link="leg_2_antislipper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_3_foream_link">
+    <inertial>
+      <origin
+        xyz="0.017171 1.3885E-06 0.0013578"
+        rpy="0 0 0" />
+      <mass
+        value="0.011927" />
+      <inertia
+        ixx="4.0451E-06"
+        ixy="1.2392E-10"
+        ixz="-4.3216E-07"
+        iyy="4.7665E-06"
+        iyz="-3.5461E-11"
+        izz="2.6567E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_foream_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+ <!--   <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_foream_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="leg_3_forearm_joint"
+    type="continuous">
+    <origin
+      xyz="-0.114129245372036 -0.0826430598623203 0.016"
+      rpy="6.31058804761167E-16 3.35999507505419E-16 -2.35619449019236" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg_3_foream_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_3_forearm_servo_link">
+    <inertial>
+      <origin
+        xyz="0.054455 -0.00023549 -0.00073179"
+        rpy="0 0 0" />
+      <mass
+        value="0.041843" />
+      <inertia
+        ixx="6.594E-06"
+        ixy="2.8912E-07"
+        ixz="-9.9361E-09"
+        iyy="1.0198E-05"
+        iyz="-4.4259E-09"
+        izz="1.1982E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_forearm_servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.05 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_3_forearm_servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_3_foream_link" />
+    <child
+      link="leg_3_forearm_servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_3_arm_link">
+    <inertial>
+      <origin
+        xyz="0.0375 7.4367E-10 -0.00020126"
+        rpy="0 0 0" />
+      <mass
+        value="0.034236" />
+      <inertia
+        ixx="1.7379E-05"
+        ixy="3.5358E-08"
+        ixz="-1.8477E-06"
+        iyy="4.4351E-05"
+        iyz="-7.3181E-16"
+        izz="3.0276E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.038 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.048"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_3_arm_joint"
+    type="continuous">
+    <origin
+      xyz="0.0675000000000001 0 -0.000760000000000052"
+      rpy="1.5707963267949 -5.73537572186178E-14 -2.38697950294409E-15" />
+    <parent
+      link="leg_3_foream_link" />
+    <child
+      link="leg_3_arm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_3_foot_link">
+    <inertial>
+      <origin
+        xyz="0.012976 2.8308E-05 -0.0002361"
+        rpy="0 0 0" />
+      <mass
+        value="0.041698" />
+      <inertia
+        ixx="6.5644E-06"
+        ixy="1.0018E-08"
+        ixz="-2.8963E-07"
+        iyy="1.191E-05"
+        iyz="-4.4252E-09"
+        izz="1.0124E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_foot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_3_foot_joint"
+    type="continuous">
+    <origin
+      xyz="0.075 0 -0.000460000000000238"
+      rpy="-2.45564581186595E-16 4.21884749357559E-15 -4.69087896824192E-14" />
+    <parent
+      link="leg_3_arm_link" />
+    <child
+      link="leg_3_foot_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_3_absorber_link">
+    <inertial>
+      <origin
+        xyz="0.072329 -0.0001788 -7.1634E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.020886" />
+      <inertia
+        ixx="5.946E-06"
+        ixy="2.2905E-07"
+        ixz="-1.6054E-14"
+        iyy="1.8494E-05"
+        iyz="2.0114E-10"
+        izz="1.5159E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_absorber_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.068 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.028 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_3_absorber_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_3_foot_link" />
+    <child
+      link="leg_3_absorber_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_3_antislipper_link">
+    <inertial>
+      <origin
+        xyz="0.12452 -2.4494E-15 4.1633E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0022964" />
+      <inertia
+        ixx="6.8197E-08"
+        ixy="-5.1903E-23"
+        ixz="4.3013E-23"
+        iyy="7.2351E-08"
+        iyz="3.8243E-24"
+        izz="7.2351E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_3_antislipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.123 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+        <cylinder length="0.015" radius="0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_3_antislipper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_3_foot_link" />
+    <child
+      link="leg_3_antislipper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_4_forearm_link">
+    <inertial>
+      <origin
+        xyz="0.017171 1.3885E-06 0.0013578"
+        rpy="0 0 0" />
+      <mass
+        value="0.011927" />
+      <inertia
+        ixx="4.0451E-06"
+        ixy="1.2392E-10"
+        ixz="-4.3216E-07"
+        iyy="4.7665E-06"
+        iyz="-3.5461E-11"
+        izz="2.6567E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+ <!--   <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_forearm_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="leg_4_forearm_joint"
+    type="continuous">
+    <origin
+      xyz="-0.114129245372036 0.082754301092088 0.016"
+      rpy="6.22754160210778E-16 5.60637197183085E-16 2.35619449019235" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg_4_forearm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_4_forearm_servo_link">
+    <inertial>
+      <origin
+        xyz="0.05438 -0.0002361 -0.00073169"
+        rpy="0 0 0" />
+      <mass
+        value="0.041698" />
+      <inertia
+        ixx="6.5673E-06"
+        ixy="2.8857E-07"
+        ixz="-9.8477E-09"
+        iyy="1.0117E-05"
+        iyz="-4.425E-09"
+        izz="1.1901E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_forearm_servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.05 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_4_forearm_servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="4.93038065763132E-32 -4.93038065763132E-32 0" />
+    <parent
+      link="leg_4_forearm_link" />
+    <child
+      link="leg_4_forearm_servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_4_arm_link">
+    <inertial>
+      <origin
+        xyz="0.0375 7.4367E-10 -0.00020126"
+        rpy="0 0 0" />
+      <mass
+        value="0.034236" />
+      <inertia
+        ixx="1.7379E-05"
+        ixy="3.5358E-08"
+        ixz="-1.8477E-06"
+        iyy="4.4351E-05"
+        iyz="-7.3182E-16"
+        izz="3.0276E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.038 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.048"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_4_arm_joint"
+    type="continuous">
+    <origin
+      xyz="0.0675000000000001 0 -0.000760000000000035"
+      rpy="1.5707963267949 -5.74087013921479E-14 -2.38697950294409E-15" />
+    <parent
+      link="leg_4_forearm_link" />
+    <child
+      link="leg_4_arm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_4_foot_link">
+    <inertial>
+      <origin
+        xyz="0.013051 2.8407E-05 -0.00023672"
+        rpy="0 0 0" />
+      <mass
+        value="0.041553" />
+      <inertia
+        ixx="6.5378E-06"
+        ixy="9.9298E-09"
+        ixz="-2.8908E-07"
+        iyy="1.183E-05"
+        iyz="-4.4243E-09"
+        izz="1.0043E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_foot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_4_foot_joint"
+    type="continuous">
+    <origin
+      xyz="0.0749999999999999 0 -0.000460000000000283"
+      rpy="2.0785252770019E-16 4.32986979603811E-15 -4.69087896824192E-14" />
+    <parent
+      link="leg_4_arm_link" />
+    <child
+      link="leg_4_foot_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_4_absorber_link">
+    <inertial>
+      <origin
+        xyz="0.073032 -0.00037142 -6.9611E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.021493" />
+      <inertia
+        ixx="6.0216E-06"
+        ixy="1.29E-07"
+        ixz="-1.5004E-14"
+        iyy="1.8907E-05"
+        iyz="2.0114E-10"
+        izz="1.5553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_absorber_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.068 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.028 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_4_absorber_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -2.36658271566304E-30" />
+    <parent
+      link="leg_4_foot_link" />
+    <child
+      link="leg_4_absorber_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_4_antislipper_link">
+    <inertial>
+      <origin
+        xyz="0.12452 -2.4425E-15 4.1633E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0022964" />
+      <inertia
+        ixx="6.8197E-08"
+        ixy="-5.4918E-23"
+        ixz="-3.3087E-24"
+        iyy="7.2351E-08"
+        iyz="1.0466E-24"
+        izz="7.2351E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_4_antislipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.123 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+        <cylinder length="0.015" radius="0.008" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_4_antislipper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -2.36658271566304E-30" />
+    <parent
+      link="leg_4_foot_link" />
+    <child
+      link="leg_4_antislipper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_5_forearm_link">
+    <inertial>
+      <origin
+        xyz="0.016572 1.34E-06 0.00053594"
+        rpy="0 0 0" />
+      <mass
+        value="0.012358" />
+      <inertia
+        ixx="4.2811E-06"
+        ixy="1.3393E-10"
+        ixz="-2.6385E-07"
+        iyy="5.1251E-06"
+        iyz="-2.1848E-11"
+        izz="2.7851E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+ <!--   <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_forearm_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="leg_5_forearm_joint"
+    type="continuous">
+    <origin
+      xyz="-8.85412793472023E-05 0.119068481647729 0.016"
+      rpy="5.18913254202836E-16 5.33334841637562E-16 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg_5_forearm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_5_forearm_servo_link">
+    <inertial>
+      <origin
+        xyz="0.054455 -0.00023549 -0.00073179"
+        rpy="0 0 0" />
+      <mass
+        value="0.041843" />
+      <inertia
+        ixx="6.594E-06"
+        ixy="2.8912E-07"
+        ixz="-9.9361E-09"
+        iyy="1.0198E-05"
+        iyz="-4.4259E-09"
+        izz="1.1982E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_forearm_servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.05 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_5_forearm_servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 -3.06764180530034E-33 0" />
+    <parent
+      link="leg_5_forearm_link" />
+    <child
+      link="leg_5_forearm_servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_5_arm_link">
+    <inertial>
+      <origin
+        xyz="0.0375 5.2255E-10 -0.00020126"
+        rpy="0 0 0" />
+      <mass
+        value="0.034236" />
+      <inertia
+        ixx="1.7379E-05"
+        ixy="3.5358E-08"
+        ixz="-1.8477E-06"
+        iyy="4.4351E-05"
+        iyz="-5.1432E-16"
+        izz="3.0276E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.038 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.048"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_5_arm_joint"
+    type="continuous">
+    <origin
+      xyz="0.0675000000000001 0 -0.000760000000000038"
+      rpy="1.5707963267949 -4.14448842751674E-16 -9.99200722162641E-16" />
+    <parent
+      link="leg_5_forearm_link" />
+    <child
+      link="leg_5_arm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_5_foot_link">
+    <inertial>
+      <origin
+        xyz="0.012976 2.8308E-05 -0.0002361"
+        rpy="0 0 0" />
+      <mass
+        value="0.041698" />
+      <inertia
+        ixx="6.5644E-06"
+        ixy="1.0018E-08"
+        ixz="-2.8963E-07"
+        iyy="1.191E-05"
+        iyz="-4.4252E-09"
+        izz="1.0124E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_foot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_5_foot_joint"
+    type="continuous">
+    <origin
+      xyz="0.075 0 -0.000460000000000169"
+      rpy="0 0 0" />
+    <parent
+      link="leg_5_arm_link" />
+    <child
+      link="leg_5_foot_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_5_absorber_link">
+    <inertial>
+      <origin
+        xyz="0.073032 -0.00037142 -7.0825E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.021493" />
+      <inertia
+        ixx="6.0216E-06"
+        ixy="1.29E-07"
+        ixz="-1.4999E-14"
+        iyy="1.8907E-05"
+        iyz="2.0114E-10"
+        izz="1.5553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_absorber_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.068 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.028 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_5_absorber_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_5_foot_link" />
+    <child
+      link="leg_5_absorber_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_5_antislipper_link">
+    <inertial>
+      <origin
+        xyz="0.12452 -1.19E-15 2.64E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0022964" />
+      <inertia
+        ixx="6.8197E-08"
+        ixy="-1.7401E-23"
+        ixz="-5.5353E-24"
+        iyy="7.2351E-08"
+        iyz="-3.6795E-25"
+        izz="7.2351E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_5_antislipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.123 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+        <cylinder length="0.015" radius="0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_5_antislipper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="leg_5_foot_link" />
+    <child
+      link="leg_5_antislipper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_6_forearm_link">
+    <inertial>
+      <origin
+        xyz="0.016572 1.34E-06 0.00053594"
+        rpy="0 0 0" />
+      <mass
+        value="0.012358" />
+      <inertia
+        ixx="4.2811E-06"
+        ixy="1.3384E-10"
+        ixz="-2.6385E-07"
+        iyy="5.1251E-06"
+        iyz="-2.1851E-11"
+        izz="2.7851E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+ <!--   <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_forearm_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="leg_6_forearm_joint"
+    type="continuous">
+    <origin
+      xyz="0.11395 0.082754 0.016"
+      rpy="3.945E-16 5.491E-16 0.7854" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg_6_forearm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_6_forearm_servo_link">
+    <inertial>
+      <origin
+        xyz="0.054455 -0.00023549 -0.00073179"
+        rpy="0 0 0" />
+      <mass
+        value="0.041843" />
+      <inertia
+        ixx="6.594E-06"
+        ixy="2.8912E-07"
+        ixz="-9.9361E-09"
+        iyy="1.0198E-05"
+        iyz="-4.4259E-09"
+        izz="1.1982E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_forearm_servo_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.05 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_6_forearm_servo_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="9.8608E-32 0 0" />
+    <parent
+      link="leg_6_forearm_link" />
+    <child
+      link="leg_6_forearm_servo_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_6_arm_link">
+    <inertial>
+      <origin
+        xyz="0.0375 7.4367E-10 -0.00020126"
+        rpy="0 0 0" />
+      <mass
+        value="0.034236" />
+      <inertia
+        ixx="1.7379E-05"
+        ixy="3.5358E-08"
+        ixz="-1.8477E-06"
+        iyy="4.4351E-05"
+        iyz="-7.3182E-16"
+        izz="3.0276E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.038 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.048"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_6_arm_joint"
+    type="continuous">
+    <origin
+      xyz="0.0675 0 -0.00076"
+      rpy="1.5708 -5.7354E-14 -2.498E-15" />
+    <parent
+      link="leg_6_forearm_link" />
+    <child
+      link="leg_6_arm_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_6_foot_link">
+    <inertial>
+      <origin
+        xyz="0.012976 2.8308E-05 -0.0002361"
+        rpy="0 0 0" />
+      <mass
+        value="0.041698" />
+      <inertia
+        ixx="6.5644E-06"
+        ixy="1.0018E-08"
+        ixz="-2.8963E-07"
+        iyy="1.191E-05"
+        iyz="-4.4252E-09"
+        izz="1.0124E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_foot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.035 0.032"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_6_foot_joint"
+    type="continuous">
+    <origin
+      xyz="0.075 0 -0.00046"
+      rpy="1.341E-16 4.4409E-15 -4.6909E-14" />
+    <parent
+      link="leg_6_arm_link" />
+    <child
+      link="leg_6_foot_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <link
+    name="leg_6_absorber_link">
+    <inertial>
+      <origin
+        xyz="0.073032 -0.00037142 -6.9611E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.021493" />
+      <inertia
+        ixx="6.0216E-06"
+        ixy="1.29E-07"
+        ixz="-1.5004E-14"
+        iyy="1.8907E-05"
+        iyz="2.0114E-10"
+        izz="1.5553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_absorber_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.068 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.028 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_6_absorber_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="7.88860905221012E-31 0 0" />
+    <parent
+      link="leg_6_foot_link" />
+    <child
+      link="leg_6_absorber_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="leg_6_antislipper_link">
+    <inertial>
+      <origin
+        xyz="0.12452 -2.4494E-15 4.4409E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0022964" />
+      <inertia
+        ixx="6.8197E-08"
+        ixy="-5.8449E-23"
+        ixz="3.6396E-23"
+        iyy="7.2351E-08"
+        iyz="2.9262E-24"
+        izz="7.2351E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bullet_description/meshes/leg_6_antislipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.123 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+        <cylinder length="0.015" radius="0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leg_6_antislipper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="7.88860905221012E-31 0 0" />
+    <parent
+      link="leg_6_foot_link" />
+    <child
+      link="leg_6_antislipper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <!-- Transmission elements for Gazebo ROS Control plugin -->
+
+  <!-- LEG 1 -->
+  <transmission name="leg_1_forearm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_1_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_1_forearm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+
+  </transmission>
+  <transmission name="leg_1_arm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_1_arm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_1_earm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="leg_1_foot_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_1_foot_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_1_foot_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- LEG 2 -->
+  <transmission name="leg_2_forearm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_2_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_2_forearm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+
+  </transmission>
+  <transmission name="leg_2_arm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_2_arm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_2_earm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="leg_2_foot_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_2_foot_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_2_foot_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- LEG 3 -->
+  <transmission name="leg_3_forearm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_3_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_3_forearm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+
+  </transmission>
+  <transmission name="leg_3_arm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_3_arm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_3_earm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="leg_3_foot_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_3_foot_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_3_foot_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- LEG 4 -->
+  <transmission name="leg_4_forearm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_4_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_4_forearm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+
+  </transmission>
+  <transmission name="leg_4_arm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_4_arm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_4_earm_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="leg_4_foot_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_4_foot_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_4_foot_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+    <!-- LEG 5 -->
+    <transmission name="leg_5_forearm_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="leg_5_forearm_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="leg_5_forearm_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+
+    </transmission>
+    <transmission name="leg_5_arm_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="leg_5_arm_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="leg_5_earm_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="leg_5_foot_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="leg_5_foot_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="leg_5_foot_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+
+      <!-- LEG 6 -->
+      <transmission name="leg_6_forearm_tran">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="leg_6_forearm_joint">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="leg_6_forearm_motor">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+
+      </transmission>
+      <transmission name="leg_6_arm_tran">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="leg_6_arm_joint">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="leg_6_earm_motor">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+      </transmission>
+
+      <transmission name="leg_6_foot_tran">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="leg_6_foot_joint">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="leg_6_foot_motor">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+      </transmission>
+
+</robot>

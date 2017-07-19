@@ -1,0 +1,5 @@
+geometry_msgs/Point pt
+std_msgs/String command
+int16 leg_index
+---
+geometry_msgs/Point result

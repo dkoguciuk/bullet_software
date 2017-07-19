@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="gui" 		default="True"/>
+  <arg name="robot_name"	default="bullet"/>
+  <arg name="tf_prefix"		default="bullet"/>
+
+  <!--======== LOAD THE ROBOT URDF INTO THE ROS PARAMETER SERVER =======-->
+  <include file="$(find bullet_description)/launch/load_description.launch">
+    <arg name="robot_name"	value="$(arg robot_name)"/>
+  </include>
+
+  <!--======================== ROBOT NAMEPSACE =========================-->
+  <group ns="$(arg robot_name)">
+
+    <!--======== RUN ROBOT JOINT PUBLISHER TO PUBLISH JOINT STATE ========-->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <param name="use_gui" 		value="$(arg gui)"/>
+    </node>
+
+    <!-- RUN ROBOT STATE PUBLISHER TO SUBSCRIBE JOINTS AND CREATE TF TREE -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+      <param name="tf_prefix"	value="$(arg tf_prefix)"/>
+    </node>
+
+    <!--============================== RVIZ ==============================-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find bullet_description)/rviz/urdf.rviz --fixed-frame $(arg tf_prefix)/base_link"/>
+
+  </group>
+
+</launch>

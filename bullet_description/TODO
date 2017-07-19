@@ -1,0 +1,3 @@
+Obecnie, jak zmienimy nazwę robota/tf_prefix to rviz się ładuje z niezmienionymi parametrami - nie ma takiej możliwości, by wrzucić tam na przykład reference-frame jako argument.
+
+Możliwym rozwiązaniem mógłby być prosty skrypt pythona, który podmieniałby odpowiednie linijki w pliku .rviz.

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!--=========================== ARGUMENTS ============================-->
+  <arg name="robot_name"		default="bullet"/>
+  <arg name="module"			default="simulator"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server ns="$(arg robot_name)/$(arg module)"-->
+  <rosparam command="load" file="$(find bullet_simulator)/config/position_controller.yaml"/>
+
+  <!--======================== ROBOT NAMEPSACE ==========================-->
+  <group ns="$(arg robot_name)">
+
+<!--ns="$(arg robot_name)"-->
+    <!-- load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" 
+      args="leg_1_1_ctrl leg_1_2_ctrl  leg_1_3_ctrl
+            leg_2_1_ctrl leg_2_2_ctrl  leg_2_3_ctrl
+            leg_3_1_ctrl leg_3_2_ctrl  leg_3_3_ctrl
+            leg_4_1_ctrl leg_4_2_ctrl  leg_4_3_ctrl
+            leg_5_1_ctrl leg_5_2_ctrl  leg_5_3_ctrl
+            leg_6_1_ctrl leg_6_2_ctrl  leg_6_3_ctrl
+            joint_state_controller"/>
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+      respawn="false" output="screen">
+      <remap from="/joint_states" 	to="$(arg robot_name)/joint_states" />
+      <!--remap from="robot_description"	to="$(arg robot_name)/robot_description"/-->
+    </node>
+
+    <!-- conversion from bullet_kinematics to ros controllers -->
+    <node name="kinematics_translator" pkg="bullet_simulator" type="bullet_kinematics_translator"/>
+
+  </group> 
+
+
+</launch>
