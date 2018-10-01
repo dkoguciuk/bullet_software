@@ -13,7 +13,7 @@
   <group ns="$(arg robot_name)">
   
   <node name="joy_node" pkg="joy" type="joy_node" />
-  <node name="bullet_teleop" pkg="bullet_teleop" type="bullet_teleop.py" />
+  <node name="bullet_teleop" pkg="bullet_teleop" type="bullet_teleop.py" output="screen" />
 
   </group>
 

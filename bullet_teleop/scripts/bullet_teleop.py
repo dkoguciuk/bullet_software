@@ -29,26 +29,33 @@ mode_button_pressed = 0
 stand_up_button_pressed = 0
 lay_down_button_pressed = 0
 
-pub = rospy.Publisher('body_relative', Twist, queue_size=100)
+
+###############################################################################
+# ROS PUBLISHERS
+###############################################################################
+
+
+pub = rospy.Publisher('teleop/body_relative', Twist, queue_size=100)
 body_position_pub = rospy.Publisher('body_position', Vector3, queue_size=100)
 body_orientation_pub = rospy.Publisher('body_orientation', Vector3, queue_size=100)
-
 rospy.loginfo("Publishing to topic: body_relative")
 
 
+###############################################################################
+# VARIABLES
+###############################################################################
+
 
 def joy_callback(data):
+
+    ###########################################################################
+    # VARIABLES
+    ###########################################################################
+
     global mode
     global mode_button_pressed
     global stand_up_button_pressed
     global lay_down_button_pressed
-
-    if data.buttons[mode_change_button_id] is 1:
-        if mode_button_pressed is 0:
-            mode = (mode + 1)%2
-            mode_button_pressed = 1
-    else:
-        mode_button_pressed = 0
 
     lin_vel_x = 0
     lin_vel_y = 0
@@ -58,17 +65,46 @@ def joy_callback(data):
     body_orientation_x = 0
     body_orientation_y = 0
 
+    ###########################################################################
+    # MODE CHANGE
+    ###########################################################################
+
+    if data.buttons[mode_change_button_id] is 1:
+        print "MODE CHANGE BUTTON!", mode
+        if mode_button_pressed is 0:
+            mode = (mode + 1)%2
+            mode_button_pressed = 1
+    else:
+        mode_button_pressed = 0
+
+    ###########################################################################
+    # DEADMAN SWITCH
+    ###########################################################################
+ 
     if data.buttons[dead_man_button_id] is 1:
+
+        #######################################################################
+        # GO AHEAD 
+        #######################################################################
+
         if mode is 0:
             lin_vel_x = data.axes[lin_vel_x_axe_id] * max_lin_vel
             lin_vel_y = data.axes[lin_vel_y_axe_id] * max_lin_vel
             ang_vel = data.axes[ang_vel_axe_id] * max_ang_vel
+
+        #######################################################################
+        # DANCE BABY, DANCE
+        #######################################################################
 
         else:
             body_pos_x = data.axes[body_pos_x_axe_id] * body_pos_max
             body_pos_y = data.axes[body_pos_y_axe_id] * body_pos_max
             body_orientation_x = data.axes[body_orientation_x_axe_id] * body_orientation_max_angle
             body_orientation_y = data.axes[body_orientation_y_axe_id] * body_orientation_max_angle
+
+        #######################################################################
+        # STAND UP / LAY DOWN
+        #######################################################################
 
         if data.buttons[stand_up_button_id] is 1:
             if stand_up_button_pressed is 0:
@@ -77,12 +113,17 @@ def joy_callback(data):
                 stand_up_button_pressed = 1
         else:
             stand_up_button_pressed = 0
+
         if data.buttons[lay_down_button_id] is 1:
             if lay_down_button_pressed is 0:
                 rospy.ServiceProxy("lay_down", StandupLaydownService.StandUpLayDown).call()
                 lay_down_button_pressed = 1
         else:
             lay_down_button_pressed = 0
+
+        #######################################################################
+        # SEND MESSAGES
+        #######################################################################
 
     twist_msg = Twist()
     twist_msg.linear.x = lin_vel_x
@@ -100,7 +141,10 @@ def joy_callback(data):
     body_orientation_msg.y = body_orientation_y
     body_orientation_pub.publish(body_orientation_msg)
 
-    return
+
+###############################################################################
+# MAIN
+###############################################################################
 
 
 if __name__ == '__main__':
