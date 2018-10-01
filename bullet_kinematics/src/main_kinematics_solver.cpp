@@ -41,9 +41,9 @@ void globalRobotPoseCallback(const bullet_kinematics::RobotPose::ConstPtr& msg)
     body_position.data[1] = msg->body_pose.position.y;
     body_position.data[2] = msg->body_pose.position.z;
 
-    cout << "X" << msg->leg_position[0].x << endl;
-    cout << "Y" << msg->leg_position[0].y << endl;
-    cout << "Z" << msg->leg_position[0].z << endl;
+//    cout << "X" << msg->leg_position[0].x << endl;
+//    cout << "Y" << msg->leg_position[0].y << endl;
+//    cout << "Z" << msg->leg_position[0].z << endl;
 
     // Extract body orientation from message
     body_orientation = KDL::Rotation::Quaternion(msg->body_pose.orientation.x,
@@ -64,9 +64,9 @@ void globalRobotPoseCallback(const bullet_kinematics::RobotPose::ConstPtr& msg)
         try
         {
             Solver::getInstance()->solveInv(leg_tip_position,body_position,body_orientation,result, i);
-            cout << "XS" << result(0) << endl;
-            cout << "YS" << result(1) << endl;
-            cout << "ZS" << result(2) << endl;
+//            cout << "XS" << result(0) << endl;
+//            cout << "YS" << result(1) << endl;
+//            cout << "ZS" << result(2) << endl;
             response_message.data.push_back(result(0));
             response_message.data.push_back(result(1));
             response_message.data.push_back(-result(2));
