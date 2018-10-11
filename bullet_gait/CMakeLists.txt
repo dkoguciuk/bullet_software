@@ -73,5 +73,5 @@ include_directories(${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} include/bullet_g
 
 ## Declare a C++ executable
 add_executable(gait_generator src/main_gait.cpp src/gait_generator.cpp src/gait_generator_simple.cpp include/bullet_gait/gait_generator.h include/bullet_gait/gait_generator_simple.h)
-add_dependencies(gait_generator bullet_kinematics_generate_messages_cpp bullet_core)
+add_dependencies(gait_generator bullet_generator_generate_messages_cpp bullet_core)
 target_link_libraries(gait_generator ${catkin_LIBRARIES})
